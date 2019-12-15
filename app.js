@@ -54,9 +54,22 @@ const listOfPlayers = []
 const blueTeam = []
 const redTeam = []
 
+// Use the class keyword to create a template of a dodgeBallPlayer that requires canThrowBall, canDodgeBall, hasPaid, isHealthy, yearsExperience
+
 class player {
-  constructor(){}
+  constructor(canThrowBall, canDodgeBall, hasPaid, isHealthy, yearsExperience){
+    this.canThrowBall;
+    this.canDodgeBall;
+    this.hasPaid;
+    this.isHealthy;
+    this.yearsExperience;
+  }
+  // Push these new dodge ball Player objects into a new array
+  // then display them in the DOM as available players to pick.
+  dodgeBallPlayer.push(arrOfPeople);
 }
+
+
 class blueTeammate {
   constructor(){}
 }
@@ -66,6 +79,11 @@ class redTeammate {
 
 const listPeopleChoices = () => {
   const listElement = document.getElementById('people')
+
+  while(listElement.firstChild) {
+      listElement.firstChild.remove()
+    }
+
   arrOfPeople.map(person => {
     const li = document.createElement("li")
     const button = document.createElement("button")
