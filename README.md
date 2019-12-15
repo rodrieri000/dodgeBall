@@ -6,7 +6,6 @@ Checklist
 - 20pts - Uses Class - This is not a hack job. You should use class to add the new properties you need and extend when you need.
 - 20pts - Minimum 3 Unit Tests - Use Mocha and Chai to give us at least 3 unit test that prove a person becomes a player and player becomes a teammate.
 
-Organize existing players into two different teams.
 
 Use the class keyword to create a template of a dodgeBallPlayer that requires canThrowBall, canDodgeBall, hasPaid, isHealthy, yearsExperience
 
