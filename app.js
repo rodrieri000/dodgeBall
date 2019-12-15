@@ -105,7 +105,14 @@ const listPeopleChoices = () => {
     const li = document.createElement("li")
     const button = document.createElement("button")
     button.innerHTML = "Make Player"
-    button.addEventListener('click', function() {makePlayer(person.id)} )
+    button.addEventListener('click', function() {
+      
+      if (listOfPlayers.indexOf(person.id) === -1) {
+        makePlayer(person.id)
+      }
+      listOfPlayers.push(person.id)
+      }
+    )
     li.appendChild(button)
     li.appendChild(document.createTextNode(person.name + " - " + person.skillSet))
     listElement.append(li)
@@ -115,19 +122,16 @@ const listPeopleChoices = () => {
 
 const makePlayer = (id) => {
   const list = document.getElementById('players')
-  // while(list.firstChild) {
-  //   list.firstChild.remove()
-  // }
-  arrOfPeople.map(person => {
-    const li = document.createElement("li")
-    const button = document.createElement("button")
-    button.innerHTML = "Pick Team"
-    button.addEventListener('click', function() {dodgeBallPlayer(person.id)} )
-    li.appendChild(button)
-    li.appendChild(document.createTextNode(person.name))
-    list.append(li)
-  })
-  
+  let person = arrOfPeople.find(x =>
+    x.id == id
+  )
+  const li = document.createElement("li")
+  const button = document.createElement("button")
+  button.innerHTML = "Pick Team"
+  button.addEventListener('click', function() {pickTeam(person.id)} )
+  li.appendChild(button)
+  li.appendChild(document.createTextNode(person.name))
+  list.append(li)
 }
 
 class DodgeBallPlayer {
@@ -143,13 +147,22 @@ class DodgeBallPlayer {
 }
 const dodgeBallPlayer = new DodgeBallPlayer();
 
-function pickPlayer() {
-  for(i = 0; i < arrOfPeople.length; i++) {
-    arrOfPeople.push(DodgeBallPlayer)
-    // create loop to go through array w for loop in function
-  }
-}
+function pickTeam(id) {
+  const bteam = document.getElementById('blue')
+  const rteam = document.getElementById('red')
+  let player = arrOfPeople.find(player => 
+    player.id == id )
+    if (player.team == "redTeam") {
+      const li = document.createElement("li")
+      li.appendChild(document.createTextNode(player.name))
+      rteam.append(li)
+    } if (player.team =="blueTeam") {
 
+      const li = document.createElement("li")
+      li.appendChild(document.createTextNode(player.name))
+      bteam.append(li)
+    }
+}
 
 class BlueTeammate extends DodgeBallPlayer {
   constructor(blueTeam, canThrowBall, canDodgeBall, hasPaid, isHealthy, yearsExperience){
@@ -164,3 +177,18 @@ class RedTeammate extends DodgeBallPlayer{
   }
 }
 
+// canThrowBall, canDodgeBall, hasPaid
+
+if (typeof describe === 'function') {
+  describe('DodgeBallPlayer', () => {
+    it('canThrowBall', () => {
+      assert.equal(DodgeBallPlayer.canThrowBall, 'canThrowBall');
+    });
+    it('canDodgeBall', () => {
+      assert.equal(DodgeBallPlayer.canDodgeBall, 'canDodgeBall');
+    });
+    it('hasPaid', () => {
+      assert.equal(DodgeBallPlayer.hasPaid, 'hasPaid');
+    });  
+  });
+} 
